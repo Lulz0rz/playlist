@@ -1,0 +1,28 @@
+<youtube-video video-id="$ctrl.currentTrack"></youtube-video>
+
+<div class="player" md-whiteframe="2">
+
+  <div layout="row" layout-align="center center">
+
+    <div class="player-controls">
+      <md-button class="md-icon-button" ng-hide="$ctrl.isPlaying" ng-click="$ctrl.playTrack()">
+         <md-icon md-menu-origin>play_arrow</md-icon>
+      </md-button>
+      <md-button class="md-icon-button" ng-show="$ctrl.isPlaying" ng-click="$ctrl.pauseTrack()">
+         <md-icon md-menu-origin>pause</md-icon>
+      </md-button>
+      <md-button class="md-icon-button">
+         <md-icon md-menu-origin>fast_forward</md-icon>
+      </md-button>
+      <md-button class="md-icon-button">
+         <md-icon md-menu-origin>volume_up</md-icon>
+      </md-button>
+    </div>
+
+    <md-slider ng-model="$ctrl.volume" min="0" max="100" aria-label="volume"></md-slider>
+    <span flex></span>
+    <div class="player-track-details" hide-xs>{{ $ctrl.player.track.title }}</div>
+
+  </div>
+
+</div>

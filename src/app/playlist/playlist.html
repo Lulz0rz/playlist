@@ -1,0 +1,59 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" ng-click="$ctrl.toggleSidebar()">
+      <md-icon class="md-default-theme">view_headline</md-icon>
+    </md-button>
+    <span>Playlists</span>
+    <span flex></span>
+  </div>
+</md-toolbar>
+
+<md-tabs md-center-tabs="true">
+  <md-tab label="Create" ng-click="$ctrl.createPlaylistDialog($event)"></md-tab>
+</md-tabs>
+
+<div layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+
+<div flex-xs="100" flex-gt-sm="33.3333333333" flex-gt-md="12.5" ng-repeat="(id, playlist) in $ctrl.playlists">
+   <md-card>
+     <img ng-src="{{ playlist.image }}" class="md-card-image" alt="Washed Out">
+     <md-card-title>
+       <md-card-title-text>
+         <span class="md-headline">{{ playlist.name }}</span>
+       </md-card-title-text>
+     </md-card-title>
+     <md-card-content>
+       <p>{{ playlist.description }}</p>
+     </md-card-content>
+     <md-card-actions layout="row" layout-align="end center">
+       <md-button class="md-icon-button">
+           <md-icon>play_arrow</md-icon>
+           <md-tooltip md-direction="left">Play</md-tooltip>
+       </md-button>
+       <md-button class="md-icon-button">
+           <md-icon>queue_music</md-icon>
+           <md-tooltip md-direction="left">Queue playlist</md-tooltip>
+       </md-button>
+       <md-menu>
+         <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+            <md-icon md-menu-origin>more_vert</md-icon>
+         </md-button>
+         <md-menu-content width="3">
+           <md-menu-item>
+             <md-button ui-sref="tracks({playlistId: id})"><span md-menu-align-target>Manage tracks</span></md-button>
+           </md-menu-item>
+           <md-menu-item>
+             <md-button ng-click="$ctrl.confirmDeletePlaylist($event, id)"><span md-menu-align-target>Delete playlist</span></md-button>
+           </md-menu-item>
+         </md-menu-content>
+      </md-menu>
+    </md-card-actions>
+   </md-card>
+
+</div>
+
+<div layout="row" layout-align="center center" ng-hide="$ctrl.playlists">
+  <md-content flex="60" flex-sm="100" flex-xs="100">
+    Looks like you no playlists, click create to get started!
+  </md-content>
+</div>

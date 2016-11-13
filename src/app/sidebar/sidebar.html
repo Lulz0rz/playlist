@@ -1,0 +1,26 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-toolbar layout="row">
+     <div class="md-toolbar-tools">
+        <h2>
+          <span>Youtube Playlist</span>
+        </h2>
+        <span flex></span>
+       <md-button class="md-icon-button" ng-click="$ctrl.closeSidebar()">
+         <md-icon class="md-default-theme">close</md-icon>
+       </md-button>
+       </div>
+    </md-toolbar>
+    <md-content layout-padding="false">
+      <md-list>
+        <md-subheader class="md-no-sticky">Navigation</md-subheader>
+        <md-list-item>
+          <md-icon>music_video</md-icon>
+          <p><a href="" ui-sref="playlist">Playlists</a></p>
+        </md-list-item>
+        <md-list-item>
+          <md-icon>queue_music</md-icon>
+          <p><a href="" ui-sref="playlist">Music Queue</a></p>
+        </md-list-item>
+       </md-list>
+    </md-content>
+</md-sidenav>

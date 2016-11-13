@@ -1,0 +1,42 @@
+<md-dialog flex-xs="100" flex-sm="70" flex="30">
+  <form ng-cloak name="playlistForm" ng-submit="dialog.createNewPlaylist()">
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Create Playlist</h2>
+      </div>
+      <span flex></span>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <md-content layout="column" layout-padding>
+
+          <md-input-container flex>
+            <label>Name</label>
+            <input name="name" ng-model="dialog.newPlaylist.name" md-maxlength="22" required md-no-asterisk autocomplete="off">
+            <div ng-messages="playlistForm.name.$error">
+             <div ng-message="required">This is required.</div>
+             <div ng-message="md-maxlength">The name must be less than 22 characters long.</div>
+           </div>
+          </md-input-container>
+
+          <md-input-container flex>
+            <label>Description</label>
+            <input name="description" ng-model="dialog.newPlaylist.description" md-maxlength="32" required md-no-asterisk autocomplete="off">
+            <div ng-messages="playlistForm.description.$error">
+             <div ng-message="required">This is required.</div>
+             <div ng-message="md-maxlength">The description must be less than 32 characters long.</div>
+           </div>
+          </md-input-container>
+
+        </md-content>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="dialog.closeDialog()">Close</md-button>
+      <md-button type="submit">Create</md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>
