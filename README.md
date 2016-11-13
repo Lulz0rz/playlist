@@ -6,3 +6,4 @@ Allows you to create and manage your own playlists which are stored in a firebas
 
 Authentication via Google so you can access your playlist from anywhere.
 # playlist-demo
+# playlist-demo
