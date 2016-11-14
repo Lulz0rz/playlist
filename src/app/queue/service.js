@@ -1,6 +1,8 @@
-export default class PlayerService {
+export default class QueueService {
 
-  constructor() {
+  constructor($q) {
+    this.$q = $q;
+
     this.currentTrack = null;
     this.queue = [];
   }
@@ -15,6 +17,14 @@ export default class PlayerService {
 
   nextTrack() {
 
+  }
+
+  getQueue() {
+    const defer = this.$q.defer();
+
+    defer.resolve(this.queue);
+
+    return defer.promise;
   }
 
   addToQueue() {

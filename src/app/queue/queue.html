@@ -1,0 +1,42 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" ng-click="$ctrl.toggleSidebar()">
+      <md-icon class="md-default-theme">view_headline</md-icon>
+    </md-button>
+    <span>Queue</span>
+    <span flex></span>
+  </div>
+</md-toolbar>
+
+<div layout="row" layout-align="center center">
+  <md-content flex="95" flex-gt-md="70">
+    <md-list flex>
+        <md-subheader class="md-no-sticky">Queued tracks</md-subheader>
+         <md-list-item class="md-1-line track" flex ng-repeat-start="(id, track) in $ctrl.queuedTracks">
+           <img ng-src="{{ track.image }}" style="height: 90px"/>
+           <div class="md-list-item-text track-title" layout="column" flex>{{ track.title }}</div>
+           <md-button class="md-icon-button" ng-click="$ctrl.changeTrack(track)">
+               <md-icon>play_arrow</md-icon>
+               <md-tooltip>Play</md-tooltip>
+           </md-button>
+           <md-menu>
+             <md-button class="md-icon-button md-icon-button" md-menu-origin>
+                 <md-icon>more_vert</md-icon>
+             </md-button>
+             <md-menu-content width="3">
+               <md-menu-item>
+                 <md-button ng-click="$ctrl.setPlaylistBackground(track)"><span md-menu-align-target>Default playlist background</span></md-button>
+               </md-menu-item>
+               <md-menu-item>
+                 <md-button ><span md-menu-align-target>Queue Track</span></md-button>
+               </md-menu-item>
+               <md-menu-item>
+                 <md-button ng-click="$ctrl.removeTrackFromPlaylist(track)"><span md-menu-align-target>Remove track</span></md-button>
+               </md-menu-item>
+             </md-menu-content>
+          </md-menu>
+         </md-list-item>
+         <md-divider ng-repeat-end></md-divider>
+    </md-list>
+  </md-content>
+</div>

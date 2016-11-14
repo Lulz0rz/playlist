@@ -28,6 +28,17 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         content: {component: 'tracks'}
       }
     })
+    .state('queue', {
+      url: '/queue',
+      resolve: {
+        user: authenticated,
+        queuedTracks: (user, QueueService) => QueueService.getQueue()
+      },
+      views: {
+        sidebar: {component: 'sidebar'},
+        content: {component: 'queue'}
+      }
+    })
     .state('login', {
       url: '/login',
       views: {

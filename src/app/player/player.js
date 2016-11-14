@@ -1,15 +1,22 @@
 class PlayerController {
 
-  constructor($rootScope, $scope, $log, PlayerService) {
+  constructor($rootScope, $scope, $log, $state, localStorageService) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
+    this.$state = $state;
     this.$log = $log;
-    this.player = PlayerService;
+    this.localStorageService = localStorageService;
 
     this.currentTrack = null;
     this.isPlaying = false;
     this.youtubePlayer = null;
-    this.volume = 100;
+
+    // set volume default
+    if (!localStorageService.get('volume')) {
+      localStorageService.set('volume', 100);
+    }
+
+    this.volume = localStorageService.get('volume');
 
     this.$rootScope.$on('trackChange', (event, args) => this.onTrackChange(args));
 
@@ -31,8 +38,7 @@ class PlayerController {
   }
 
   onTrackChange(track) {
-    this.player.track = track;
-    this.currentTrack = this.player.track.id;
+    this.currentTrack = track.id;
   }
 
   onPlayerReady(player) {
@@ -49,6 +55,8 @@ class PlayerController {
   }
 
   onVolumeChange(volume) {
+    this.localStorageService.set('volume', volume);
+
     if (this.youtubePlayer) {
       this.youtubePlayer.setVolume(volume);
     }
