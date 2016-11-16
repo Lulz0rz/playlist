@@ -1,6 +1,7 @@
 export default class QueueService {
-
-  constructor($q) {
+  /** @ngInject */
+  constructor($log, $q) {
+    this.$log = $log;
     this.$q = $q;
 
     this.currentTrack = null;
@@ -27,8 +28,9 @@ export default class QueueService {
     return defer.promise;
   }
 
-  addToQueue() {
-
+  addToQueue(tracks) {
+    this.log.warn(tracks);
+    this.queue.push(tracks);
   }
 
   removeQueueTrack() {

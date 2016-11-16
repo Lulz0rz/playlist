@@ -1,5 +1,5 @@
 export default class AuthService {
-
+  /** @ngInject */
   constructor($log, $q, $state, FirebaseService) {
     this.$log = $log;
     this.$q = $q;

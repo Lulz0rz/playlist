@@ -1,7 +1,7 @@
 import CreatePlaylistController from './playlist.create';
 
 class PlaylistController {
-
+  /** @ngInject */
   constructor($document, $log, $mdDialog, $mdSidenav, PlaylistService) {
     this.$document = $document;
     this.$log = $log;

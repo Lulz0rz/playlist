@@ -1,5 +1,5 @@
 class PlayerController {
-
+  /** @ngInject */
   constructor($rootScope, $scope, $log, $state, localStorageService) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;

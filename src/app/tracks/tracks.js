@@ -1,6 +1,8 @@
-class TracksController {
+const find = require('lodash/find');
 
-  constructor($log, $stateParams, $mdToast, $mdSidenav, $document, $scope, YoutubeService, FirebaseService, PlaylistService, TracksService) {
+class TracksController {
+  /** @ngInject */
+  constructor($log, $stateParams, $mdToast, $mdSidenav, $document, $scope, YoutubeService, FirebaseService, PlaylistService, TracksService, QueueService) {
     this.$log = $log;
     this.$stateParams = $stateParams;
     this.$mdToast = $mdToast;
@@ -10,6 +12,8 @@ class TracksController {
     this.youtube = YoutubeService;
     this.playlist = PlaylistService;
     this.tracks = TracksService;
+    this.queue = QueueService;
+
     this.database = FirebaseService.getDatabase();
 
     this.searchResults = [];
@@ -27,7 +31,7 @@ class TracksController {
   }
 
   trackExists(track) {
-    return this.playlistTracks.hasOwnProperty(track.id.videoId);
+    return find(this.playlistTracks, ['id', track.id.videoId]);
   }
 
   clearSearch() {
@@ -81,6 +85,10 @@ class TracksController {
     .then(() => {
       this.notify('Background updated');
     });
+  }
+
+  addTrackToQueue(track) {
+    this.queue.addToQueue(track);
   }
 
   toggleSidebar() {

@@ -1,5 +1,5 @@
 export default class PlaylistService {
-
+  /** @ngInject */
   constructor($log, $q, FirebaseService, AuthService) {
     this.$log = $log;
     this.$q = $q;

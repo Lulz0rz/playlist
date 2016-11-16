@@ -1,5 +1,5 @@
 class LoginController {
-
+  /** @ngInject */
   constructor(AuthService) {
     this.authService = AuthService;
   }
