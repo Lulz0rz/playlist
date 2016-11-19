@@ -2,8 +2,7 @@ const find = require('lodash/find');
 
 class TracksController {
   /** @ngInject */
-  constructor($log, $stateParams, $mdToast, $mdSidenav, $document, $scope, YoutubeService, FirebaseService, PlaylistService, TracksService, QueueService) {
-    this.$log = $log;
+  constructor($stateParams, $mdToast, $mdSidenav, $document, $scope, YoutubeService, FirebaseService, PlaylistService, TracksService, QueueService) {
     this.$stateParams = $stateParams;
     this.$mdToast = $mdToast;
     this.$mdSidenav = $mdSidenav;

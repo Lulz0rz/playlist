@@ -16,6 +16,8 @@ import TracksService from './app/tracks/service';
 import QueueService from './app/queue/service';
 import YoutubeService from './app/youtube/service';
 
+import TimeFormat from './app/player/filter';
+
 import 'angular-material';
 import 'angular-messages';
 import 'angular-ui-router';
@@ -31,6 +33,7 @@ angular
   .module(app, ['ui.router', 'ngMaterial', 'ngMessages', 'youtube-embed', 'LocalStorageModule'])
   .config(routesConfig)
   .config(storageConfig)
+  .filter('TimeFormat', TimeFormat)
   .service('AuthService', AuthService)
   .service('FirebaseService', FirebaseService)
   .service('PlaylistService', PlaylistService)

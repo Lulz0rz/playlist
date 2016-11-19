@@ -1,7 +1,6 @@
 export default class CreatePlaylistController {
   /** @ngInject */
-  constructor($log, $mdDialog, PlaylistService) {
-    this.$log = $log;
+  constructor($mdDialog, PlaylistService) {
     this.$mdDialog = $mdDialog;
     this.playlist = PlaylistService;
 

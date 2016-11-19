@@ -11,23 +11,18 @@ export default class QueueService {
     }
 
     this.queue = this.localStorageService.get('queue');
-    this.currentTrack = null;
   }
 
   getQueue() {
     return this.$q.resolve(this.queue);
   }
 
-  get track() {
-    return this.currentTrack;
-  }
-
-  set track(track) {
-    this.currentTrack = track;
-  }
-
   nextTrack() {
-    this.track = this.queue.shift();
+    const track = this.queue.shift();
+
+    this.localStorageService.set('queue', this.queue);
+
+    return track;
   }
 
   addTrackToQueue(track) {
@@ -51,5 +46,4 @@ export default class QueueService {
   clearQueue() {
     this.queue = [];
   }
-
 }

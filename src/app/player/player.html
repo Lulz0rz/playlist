@@ -1,10 +1,10 @@
-<youtube-video video-id="$ctrl.currentTrack"></youtube-video>
+<youtube-video video-id="$ctrl.currentTrack.id"></youtube-video>
 
 <div class="player" md-whiteframe="2" ng-hide="$ctrl.$state.is('login')">
 
   <div layout="row" layout-align="center center">
 
-    <div class="player-controls">
+    <div class="player__controls">
       <md-button class="md-icon-button" ng-hide="$ctrl.isPlaying" ng-click="$ctrl.playTrack()">
          <md-icon md-menu-origin>play_arrow</md-icon>
       </md-button>
@@ -14,14 +14,20 @@
       <md-button class="md-icon-button">
          <md-icon md-menu-origin>fast_forward</md-icon>
       </md-button>
-      <md-button class="md-icon-button">
+      <md-button ng-click="$ctrl.toggleVolumeControl()" class="md-icon-button">
          <md-icon md-menu-origin>volume_up</md-icon>
       </md-button>
     </div>
 
-    <md-slider ng-model="$ctrl.volume" min="0" max="100" aria-label="volume"></md-slider>
-    <span flex></span>
-    <div class="player-track-details" hide-xs>{{ $ctrl.player.track.title }}</div>
+    <div md-whiteframe="1" class="volume__control">
+      <md-slider ng-show="$ctrl.showVolumeControl" ng-model="$ctrl.volume" min="0" max="100" aria-label="volume" md-vertical></md-slider>
+    </div>
+
+    <span flex hide-gt-xs></span>
+    <div class="track__time">{{ $ctrl.trackInfo.currentTime | TimeFormat }} / {{ $ctrl.trackInfo.duration | TimeFormat }}</div>
+
+    <span flex hide-xs></span>
+    <div class="track__details" hide-xs>{{ $ctrl.currentTrack.title }}</div>
 
   </div>
 
