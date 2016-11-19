@@ -1,9 +1,8 @@
-import apiKey from './config';
+import apiKey from '../config/youtube';
 
 export default class YoutubeService {
   /** @ngInject */
-  constructor($log, $q, $http) {
-    this.$log = $log;
+  constructor($q, $http) {
     this.$q = $q;
     this.$http = $http;
   }

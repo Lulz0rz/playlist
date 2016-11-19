@@ -2,19 +2,45 @@ import CreatePlaylistController from './playlist.create';
 
 class PlaylistController {
   /** @ngInject */
-  constructor($document, $log, $mdDialog, $mdSidenav, PlaylistService) {
+  constructor($document, $mdDialog, $mdSidenav, $mdToast, PlaylistService, TracksService, QueueService) {
     this.$document = $document;
-    this.$log = $log;
     this.$mdDialog = $mdDialog;
     this.$mdSidenav = $mdSidenav;
+    this.$mdToast = $mdToast;
     this.playlist = PlaylistService;
+    this.tracks = TracksService;
+    this.queue = QueueService;
   }
 
   refreshPlaylists() {
     this.playlist.getPlaylists()
-    .then(tracks => {
-      this.playlists = tracks;
+    .then(playlists => {
+      this.playlists = playlists;
     });
+  }
+
+  queueTracks(playlistId) {
+    this.tracks.getTracks(playlistId)
+    .then(tracks => {
+      if (tracks) {
+        const trackCount = Object.keys(tracks).length;
+        this.notify(`${trackCount} tracks queued`);
+      }
+
+      this.queue.addTracksToQueue(tracks);
+    });
+  }
+
+  notify(message) {
+    const parentEl = angular.element(this.$document.body);
+
+    this.$mdToast.show(
+      this.$mdToast.simple()
+        .textContent(message)
+        .position('bottom right')
+        .parent(parentEl)
+        .hideDelay(3000)
+    );
   }
 
   createPlaylistDialog(ev) {

@@ -1,7 +1,6 @@
 export default class TracksService {
   /** @ngInject */
-  constructor($log, $q, FirebaseService, AuthService) {
-    this.$log = $log;
+  constructor($q, FirebaseService, AuthService) {
     this.$q = $q;
     this.firebase = FirebaseService;
     this.auth = AuthService;
@@ -15,7 +14,6 @@ export default class TracksService {
     .ref(`tracks/${playlistId}`)
     .once('value')
     .then(snapshot => {
-      this.$log.warn(snapshot.val());
       defer.resolve(snapshot.val());
     })
     .catch(error => {

@@ -1,11 +1,21 @@
+const each = require('lodash/each');
+
 export default class QueueService {
   /** @ngInject */
-  constructor($log, $q) {
-    this.$log = $log;
+  constructor($q, localStorageService) {
     this.$q = $q;
+    this.localStorageService = localStorageService;
 
+    if (!localStorageService.get('queue')) {
+      this.localStorageService.set('queue', []);
+    }
+
+    this.queue = this.localStorageService.get('queue');
     this.currentTrack = null;
-    this.queue = [];
+  }
+
+  getQueue() {
+    return this.$q.resolve(this.queue);
   }
 
   get track() {
@@ -17,28 +27,29 @@ export default class QueueService {
   }
 
   nextTrack() {
-
+    this.track = this.queue.shift();
   }
 
-  getQueue() {
-    const defer = this.$q.defer();
-
-    defer.resolve(this.queue);
-
-    return defer.promise;
+  addTrackToQueue(track) {
+    this.queue.push(track);
+    this.localStorageService.set('queue', this.queue);
   }
 
-  addToQueue(tracks) {
-    this.log.warn(tracks);
-    this.queue.push(tracks);
+  addTracksToQueue(tracks) {
+    each(tracks, track => {
+      this.queue.push(track);
+    });
+
+    this.localStorageService.set('queue', this.queue);
   }
 
-  removeQueueTrack() {
-
+  removeTrackFromQueue(index) {
+    this.queue.splice(index, 1);
+    this.localStorageService.set('queue', this.queue);
   }
 
   clearQueue() {
-
+    this.queue = [];
   }
 
 }

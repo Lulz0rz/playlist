@@ -1,10 +1,9 @@
 class PlayerController {
   /** @ngInject */
-  constructor($rootScope, $scope, $log, $state, localStorageService) {
+  constructor($rootScope, $scope, $state, localStorageService) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
-    this.$log = $log;
     this.localStorageService = localStorageService;
 
     this.currentTrack = null;
@@ -12,11 +11,11 @@ class PlayerController {
     this.youtubePlayer = null;
 
     // set volume default
-    if (!localStorageService.get('volume')) {
-      localStorageService.set('volume', 100);
+    if (!this.localStorageService.get('volume')) {
+      this.localStorageService.set('volume', 100);
     }
 
-    this.volume = localStorageService.get('volume');
+    this.volume = this.localStorageService.get('volume');
 
     this.$rootScope.$on('trackChange', (event, args) => this.onTrackChange(args));
 

@@ -88,7 +88,8 @@ class TracksController {
   }
 
   addTrackToQueue(track) {
-    this.queue.addToQueue(track);
+    this.notify('Track added to queue');
+    this.queue.addTrackToQueue(track);
   }
 
   toggleSidebar() {
