@@ -1,9 +1,8 @@
 class QueueController {
   /** @ngInject */
-  constructor($log, $mdSidenav, QueueService) {
+  constructor($mdSidenav, QueueService) {
     this.$mdSidenav = $mdSidenav;
     this.queue = QueueService;
-    this.$log = $log;
   }
 
   toggleSidebar() {
@@ -14,10 +13,8 @@ class QueueController {
     this.queue.removeTrackFromQueue(track);
     this.queue.getQueue().then(queue => {
       this.queuedTracks = queue;
-      this.$log.warn(queue);
     });
   }
-
 }
 
 export default {

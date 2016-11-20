@@ -11,10 +11,10 @@
       <md-button class="md-icon-button" ng-show="$ctrl.isPlaying" ng-click="$ctrl.pauseTrack()">
          <md-icon md-menu-origin>pause</md-icon>
       </md-button>
-      <md-button class="md-icon-button">
+      <md-button class="md-icon-button" ng-click="$ctrl.playNextTrack()">
          <md-icon md-menu-origin>fast_forward</md-icon>
       </md-button>
-      <md-button ng-click="$ctrl.toggleVolumeControl()" class="md-icon-button">
+      <md-button class="md-icon-button" ng-click="$ctrl.toggleVolumeControl()">
          <md-icon md-menu-origin>volume_up</md-icon>
       </md-button>
     </div>

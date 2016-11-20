@@ -26,7 +26,7 @@
        <p>{{ playlist.description }}</p>
      </md-card-content>
      <md-card-actions layout="row" layout-align="end center">
-       <md-button class="md-icon-button">
+       <md-button class="md-icon-button" ng-click="$ctrl.queueTracksAndPlay(id)">
            <md-icon>play_arrow</md-icon>
            <md-tooltip md-direction="left">Play and queue</md-tooltip>
        </md-button>

@@ -13,8 +13,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         playlists: (user, PlaylistService) => PlaylistService.getPlaylists()
       },
       views: {
-        sidebar: {component: 'sidebar'},
-        content: {component: 'playlist'}
+        sidebar: {component: 'sidebarComponent'},
+        content: {component: 'playlistComponent'}
       }
     })
     .state('tracks', {
@@ -24,8 +24,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         playlistTracks: (user, $transition$, TracksService) => TracksService.getTracks($transition$.params().playlistId)
       },
       views: {
-        sidebar: {component: 'sidebar'},
-        content: {component: 'tracks'}
+        sidebar: {component: 'sidebarComponent'},
+        content: {component: 'tracksComponent'}
       }
     })
     .state('queue', {
@@ -35,15 +35,15 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         queuedTracks: (user, QueueService) => QueueService.getQueue()
       },
       views: {
-        sidebar: {component: 'sidebar'},
-        content: {component: 'queue'}
+        sidebar: {component: 'sidebarComponent'},
+        content: {component: 'queueComponent'}
       }
     })
     .state('login', {
       url: '/login',
       views: {
-        sidebar: {component: 'sidebar'},
-        content: {component: 'login'}
+        sidebar: {component: 'sidebarComponent'},
+        content: {component: 'loginComponent'}
       }
     });
 }

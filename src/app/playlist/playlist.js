@@ -2,8 +2,9 @@ import CreatePlaylistController from './playlist.create';
 
 class PlaylistController {
   /** @ngInject */
-  constructor($document, $mdDialog, $mdSidenav, $mdToast, PlaylistService, TracksService, QueueService) {
+  constructor($document, $scope, $mdDialog, $mdSidenav, $mdToast, PlaylistService, TracksService, QueueService) {
     this.$document = $document;
+    this.$scope = $scope;
     this.$mdDialog = $mdDialog;
     this.$mdSidenav = $mdSidenav;
     this.$mdToast = $mdToast;
@@ -16,6 +17,19 @@ class PlaylistController {
     this.playlist.getPlaylists()
     .then(playlists => {
       this.playlists = playlists;
+    });
+  }
+
+  queueTracksAndPlay(playlistId) {
+    this.tracks.getTracks(playlistId)
+    .then(tracks => {
+      if (tracks) {
+        const trackCount = Object.keys(tracks).length;
+        this.notify(`${trackCount} tracks queued`);
+      }
+
+      this.queue.addTracksToQueue(tracks);
+      this.$scope.$emit('nextTrack');
     });
   }
 

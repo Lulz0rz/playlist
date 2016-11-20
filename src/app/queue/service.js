@@ -19,9 +19,7 @@ export default class QueueService {
 
   nextTrack() {
     const track = this.queue.shift();
-
     this.localStorageService.set('queue', this.queue);
-
     return track;
   }
 

@@ -23,6 +23,7 @@ class PlayerController {
     this.volume = this.localStorageService.get('volume');
 
     this.$rootScope.$on('trackChange', (event, track) => this.onTrackChange(track));
+    this.$rootScope.$on('nextTrack', () => this.playNextTrack());
 
     this.$scope.$on('youtube.player.ready', ($event, player) => this.onPlayerReady(player));
     this.$scope.$on('youtube.player.paused', ($event, player) => this.onPlayerPaused(player));
@@ -38,17 +39,28 @@ class PlayerController {
     }
   }
 
-  toggleVolumeControl() {
-    if (this.showVolumeControl === true) {
-      this.showVolumeControl = false;
-    } else if (this.showVolumeControl === false) {
-      this.showVolumeControl = true;
+  playNextTrack() {
+    this.isPlaying = false;
+    this.$interval.cancel(this.interval);
+
+    const nextTrack = this.queue.nextTrack();
+
+    if (nextTrack) {
+      this.currentTrack = nextTrack;
     }
   }
 
   pauseTrack() {
     this.youtubePlayer.pauseVideo();
     this.isPlaying = false;
+  }
+
+  toggleVolumeControl() {
+    if (this.showVolumeControl === true) {
+      this.showVolumeControl = false;
+    } else if (this.showVolumeControl === false) {
+      this.showVolumeControl = true;
+    }
   }
 
   onTrackChange(track) {
@@ -82,7 +94,12 @@ class PlayerController {
     this.youtubePlayer = player;
     this.isPlaying = false;
     this.$interval.cancel(this.interval);
-    this.currentTrack = this.queue.nextTrack();
+
+    const nextTrack = this.queue.nextTrack();
+
+    if (nextTrack) {
+      this.currentTrack = nextTrack;
+    }
   }
 
   onVolumeChange(volume) {

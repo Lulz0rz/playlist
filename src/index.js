@@ -1,10 +1,11 @@
 import angular from 'angular';
-import playlist from './app/playlist/playlist';
-import login from './app/auth/login';
-import tracks from './app/tracks/tracks';
-import player from './app/player/player';
-import queue from './app/queue/queue';
-import sidebar from './app/sidebar/sidebar';
+
+import loginComponent from './app/auth/login';
+import tracksComponent from './app/tracks/tracks';
+import playlistComponent from './app/playlist/playlist';
+import playerComponent from './app/player/player';
+import queueComponent from './app/queue/queue';
+import sidebarComponent from './app/sidebar/sidebar';
 
 import routesConfig from './routes';
 import storageConfig from './storage';
@@ -40,9 +41,9 @@ angular
   .service('TracksService', TracksService)
   .service('YoutubeService', YoutubeService)
   .service('QueueService', QueueService)
-  .component('playlist', playlist)
-  .component('tracks', tracks)
-  .component('login', login)
-  .component('sidebar', sidebar)
-  .component('player', player)
-  .component('queue', queue);
+  .component('playlistComponent', playlistComponent)
+  .component('tracksComponent', tracksComponent)
+  .component('loginComponent', loginComponent)
+  .component('sidebarComponent', sidebarComponent)
+  .component('playerComponent', playerComponent)
+  .component('queueComponent', queueComponent);

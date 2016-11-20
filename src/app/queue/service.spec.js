@@ -15,9 +15,9 @@ describe('QueueService', () => {
     test3: {id: 'test3', image: 'http://test.com/test3.png', title: 'test3'}
   };
 
-  beforeEach(angular.mock.inject(_$q_ => {
+  beforeEach(angular.mock.inject($q => {
     localStorageMock = new LocalStorageMock();
-    queueService = new QueueService(_$q_, localStorageMock);
+    queueService = new QueueService($q, localStorageMock);
 
     spyOn(localStorageMock, 'get');
     spyOn(localStorageMock, 'set');
@@ -25,7 +25,7 @@ describe('QueueService', () => {
 
   it('initialization', () => {
     expect(queueService.queue).toEqual([]);
-  });``
+  });
 
   it('add track to queue', () => {
     queueService.addTrackToQueue(track);
@@ -50,9 +50,9 @@ describe('QueueService', () => {
 
     expect(queueService.queue.length).toEqual(3);
 
-    queueService.nextTrack();
+    const nextTrack = queueService.nextTrack();
 
-    expect(queueService.track).toEqual(tracks.test1);
+    expect(nextTrack).toEqual(tracks.test1);
     expect(queueService.queue).not.toContain(tracks.test1);
 
     expect(localStorageMock.set).toHaveBeenCalled();
