@@ -1,3 +1,12 @@
+@import '~susy/sass/susy';
+@import '~breakpoint-sass/stylesheets/breakpoint';
+
+$mobile-breakpoint: 960px;
+
+@import 'sass/player';
+@import 'sass/tracklist';
+
+
 @mixin input-placeholder {
     &.placeholder { @content; }
     &:-moz-placeholder { @content; }
@@ -8,18 +17,6 @@
 
 iframe {
   display: none;
-}
-
-.track {
-  margin: 15px 0px;
-  padding: 10px;
-  &:hover {
-    background-color: #f1f1f1;
-  }
-}
-
-.content {
-  margin-bottom: 50px;
 }
 
 md-input-container .md-errors-spacer{
@@ -43,10 +40,6 @@ md-input-container.md-default-theme .md-placeholder {
   }
 }
 
-.track-title {
-  padding: 0px 51px;
-}
-
 md-dialog {
   top: -90px;
 }
@@ -57,36 +50,4 @@ md-sidenav a {
   &:hover {
     color: #3f51b5;
   }
-}
-
-.player {
-  position: fixed;
-  bottom: 0px;
-  background: white;
-  width: 100%;
-}
-
-.player__controls {
-  margin-top: 3px;
-
-  &> * {
-    float: left;
-  }
-}
-
-.volume__control {
-  position: fixed;
-  background-color: white;
-  left: 100px;
-  bottom: 48px;
-  padding: 9px 0px;
-}
-
-.track__time {
-  margin-left: 15px;
-  margin-top: -3px;
-}
-
-.track__details {
-  margin-right: 40px;
 }

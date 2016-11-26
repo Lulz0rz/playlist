@@ -1,0 +1,31 @@
+.player {
+  position: fixed;
+  bottom: 0px;
+  background: white;
+  width: 100%;
+}
+
+.player__controls {
+  margin-top: 3px;
+
+  &> * {
+    float: left;
+  }
+}
+
+.volume__control {
+  position: fixed;
+  background-color: white;
+  left: 100px;
+  bottom: 48px;
+  padding: 9px 0px;
+}
+
+.track__time {
+  margin-left: 15px;
+  margin-top: -3px;
+}
+
+.track__details {
+  margin-right: 40px;
+}

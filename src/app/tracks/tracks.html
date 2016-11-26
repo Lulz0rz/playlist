@@ -26,57 +26,60 @@
   </div>
 </md-toolbar>
 
-<div layout="row" layout-align="center center" ng-show="$ctrl.isSearching">
-  <md-content flex="70" flex-sm="100" flex-xs="100">
-    <md-list flex>
-        <md-subheader class="md-no-sticky">Youtube Search Results</md-subheader>
-         <md-list-item class="md-1-line track" flex ng-repeat-start="track in $ctrl.searchResults">
-           <img ng-src="{{ track.snippet.thumbnails.medium.url }}" style="height: 90px"/>
-           <div class="md-list-item-text track-title" layout="column" flex>{{ track.snippet.title }}</div>
-           <md-button class="md-icon-button" ng-click="$ctrl.addTrackToPlaylist(track)" ng-hide="$ctrl.trackExists(track)">
-               <md-icon>playlist_add</md-icon>
-               <md-tooltip md-direction="left">Add To Playlist</md-tooltip>
-           </md-button>
-           <md-button class="md-icon-button" ng-show="$ctrl.trackExists(track)">
-               <md-icon>playlist_add_check</md-icon>
-           </md-button>
-         </md-list-item>
-         <md-divider ng-repeat-end></md-divider>
-    </md-list>
-  </md-content>
+<div class="tracklist" ng-show="$ctrl.isSearching">
+  <div class="tracklist__header">Youtube Search Results</div>
+  <div class="tracklist__item" ng-repeat-start="track in $ctrl.searchResults">
+    <div class="tracklist__item__thumbnail"><img ng-src="{{ track.snippet.thumbnails.medium.url }}"></div>
+    <div class="tracklist__item__title">{{ track.snippet.title }}</div>
+    <div class="tracklist__item__controls">
+      <div class="tracklist__item__buttons tracklist__item__buttons--single">
+        <md-button class="md-icon-button" ng-click="$ctrl.addTrackToPlaylist(track)" ng-hide="$ctrl.trackExists(track)">
+            <md-icon>playlist_add</md-icon>
+            <md-tooltip md-direction="left">Add To Playlist</md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-show="$ctrl.trackExists(track)">
+            <md-icon>playlist_add_check</md-icon>
+        </md-button>
+     </div>
+    </div>
+  </div>
+  <div ng-repeat-end class="tracklist__divider"></div>
 </div>
 
-<div layout="row" layout-align="center center" ng-hide="$ctrl.isSearching || !$ctrl.playlistTracks">
-  <md-content flex="95" flex-gt-md="70">
-    <md-list flex>
-        <md-subheader class="md-no-sticky">Playlist tracks</md-subheader>
-         <md-list-item class="md-1-line track" flex ng-repeat-start="(id, track) in $ctrl.playlistTracks">
-           <img ng-src="{{ track.image }}" style="height: 90px" />
-           <div class="md-list-item-text track-title" layout="column" flex>{{ track.title }}</div>
-           <md-button class="md-icon-button" ng-click="$ctrl.changeTrack(track)">
-               <md-icon>play_arrow</md-icon>
-               <md-tooltip>Play</md-tooltip>
-           </md-button>
-           <md-menu>
-             <md-button class="md-icon-button md-icon-button" md-menu-origin>
-                 <md-icon>more_vert</md-icon>
-             </md-button>
-             <md-menu-content width="3">
-               <md-menu-item>
-                 <md-button ng-click="$ctrl.setPlaylistBackground(track)"><span md-menu-align-target>Default playlist background</span></md-button>
-               </md-menu-item>
-               <md-menu-item>
-                 <md-button ng-click="$ctrl.addTrackToQueue(track)"><span md-menu-align-target>Queue Track</span></md-button>
-               </md-menu-item>
-               <md-menu-item>
-                 <md-button ng-click="$ctrl.removeTrackFromPlaylist(id)"><span md-menu-align-target>Remove track</span></md-button>
-               </md-menu-item>
-             </md-menu-content>
-          </md-menu>
-         </md-list-item>
-         <md-divider ng-repeat-end></md-divider>
-    </md-list>
-  </md-content>
+<div class="tracklist" ng-hide="$ctrl.isSearching || !$ctrl.playlistTracks">
+  <div class="tracklist__header">Playlist Tracks</div>
+  <div class="tracklist__item" ng-repeat-start="(id, track) in $ctrl.playlistTracks">
+    <div class="tracklist__item__thumbnail"><img ng-src="{{ track.image }}"></div>
+    <div class="tracklist__item__title">{{ track.title }}</div>
+    <div class="tracklist__item__controls">
+      <div class="tracklist__item__buttons">
+        <md-button class="md-icon-button" ng-click="$ctrl.changeTrack(track)" hide-sm hide-xs>
+            <md-icon>play_arrow</md-icon>
+            <md-tooltip>Play</md-tooltip>
+        </md-button>
+        <md-menu>
+          <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button md-icon-button" md-menu-origin>
+              <md-icon>more_vert</md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item hide-gt-sm>
+              <md-button ng-click="$ctrl.changeTrack(track)"><span md-menu-align-target>Play</span></md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="$ctrl.setPlaylistBackground(track)"><span md-menu-align-target>Default playlist background</span></md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="$ctrl.addTrackToQueue(track)"><span md-menu-align-target>Queue Track</span></md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="$ctrl.removeTrackFromPlaylist(id)"><span md-menu-align-target>Remove track</span></md-button>
+            </md-menu-item>
+          </md-menu-content>
+       </md-menu>
+     </div>
+    </div>
+  </div>
+  <div ng-repeat-end class="tracklist__divider"></div>
 </div>
 
 <div layout="row" layout-align="center center" ng-hide="$ctrl.isSearching || $ctrl.playlistTracks">

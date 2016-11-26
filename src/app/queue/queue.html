@@ -8,25 +8,25 @@
   </div>
 </md-toolbar>
 
-<div layout="row" layout-align="center center">
-  <md-content flex="95" flex-gt-md="70">
-    <md-list flex>
-        <md-subheader class="md-no-sticky">Queued tracks</md-subheader>
-         <md-list-item class="md-1-line track" flex ng-repeat-start="track in $ctrl.queuedTracks">
-           <img ng-src="{{ track.image }}" style="height: 90px"/>
-           <div class="md-list-item-text track-title" layout="column" flex>{{ track.title }}</div>
-           <md-menu>
-             <md-button class="md-icon-button md-icon-button" md-menu-origin>
-                 <md-icon>more_vert</md-icon>
-             </md-button>
-             <md-menu-content width="3">
-               <md-menu-item>
-                 <md-button ng-click="$ctrl.removeTrackFromQueue($index)"><span md-menu-align-target>Remove Track</span></md-button>
-               </md-menu-item>
-             </md-menu-content>
-          </md-menu>
-         </md-list-item>
-         <md-divider ng-repeat-end></md-divider>
-    </md-list>
-  </md-content>
+<div class="tracklist">
+  <div class="tracklist__header">Queued Tracks</div>
+  <div class="tracklist__item" ng-repeat-start="track in $ctrl.queuedTracks">
+    <div class="tracklist__item__thumbnail"><img ng-src="{{ track.image }}"></div>
+    <div class="tracklist__item__title">{{ track.title }}</div>
+    <div class="tracklist__item__controls">
+      <div class="tracklist__item__buttons tracklist__item__buttons--single">
+        <md-menu>
+          <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button md-icon-button" md-menu-origin>
+              <md-icon>more_vert</md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item>
+              <md-button ng-click="$ctrl.removeTrackFromQueue($index)"><span md-menu-align-target>Remove Track</span></md-button>
+            </md-menu-item>
+          </md-menu-content>
+       </md-menu>
+     </div>
+    </div>
+  </div>
+  <div ng-repeat-end class="tracklist__divider"></div>
 </div>

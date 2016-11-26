@@ -66,12 +66,12 @@ class PlayerController {
   onTrackChange(track) {
     if (this.currentTrack === track) {
       this.youtubePlayer.seekTo(0);
-    }
-
-    this.currentTrack = track;
-
-    if (this.interval) {
-      this.$interval.cancel(this.interval);
+      this.currentTrack = track;
+    } else {
+      if (this.interval) {
+        this.$interval.cancel(this.interval);
+      }
+      this.currentTrack = track;
     }
   }
 
