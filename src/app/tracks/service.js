@@ -1,9 +1,8 @@
 export default class TracksService {
   /** @ngInject */
-  constructor($q, FirebaseService, AuthService) {
+  constructor($q, FirebaseService) {
     this.$q = $q;
     this.firebase = FirebaseService;
-    this.auth = AuthService;
     this.database = this.firebase.getDatabase();
   }
 

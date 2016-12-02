@@ -58,7 +58,6 @@ describe('YoutubeService', () => {
     const promise = youtubeService.search(query);
 
     $httpBackend.flush();
-    $rootScope.$apply();
 
     promise.catch(err => {
       expect(err.message).toEqual('Invalid api response.');
@@ -73,7 +72,6 @@ describe('YoutubeService', () => {
     const promise = youtubeService.search(query);
 
     $httpBackend.flush();
-    $rootScope.$apply();
 
     promise.catch(err => {
       expect(err.message).toEqual('Invalid HTTP response.');
@@ -88,7 +86,6 @@ describe('YoutubeService', () => {
     const promise = youtubeService.search(query);
 
     $httpBackend.flush();
-    $rootScope.$apply();
 
     promise.catch(err => {
       expect(err.message).toEqual('No items in response.');
